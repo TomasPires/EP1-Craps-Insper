@@ -191,7 +191,39 @@ else:
                         print("Você está na fase 'Point'")
                         print("Fichas disponíveis: {0}".format(fichas))
                                                 
-        
+                        if tipo_aposta == 'FIELD':
+                            if (field(dado1, dado2)[0]) == False:
+                                print("Você perdeu tudo.")
+                                come_out = False
+                            elif (field(dado1, dado2)[0]) == True:
+                                if (field(dado1, dado2)[1]) == True:
+                                    aposta+=aposta*2
+                                    fichas+=aposta
+                                    print("Você ganhou {0] fichas!".format(2*aposta))
+                                elif (field(dado1, dado2)[2]) == True:
+                                    aposta+=aposta*3
+                                    fichas+=aposta
+                                    print("Você ganhou {0} fichas!".format(3*aposta))
+                                else:
+                                    print("Você ganhou {0} fichas!".format(aposta))
+                                    aposta+=aposta
+                                    fichas+=aposta                                    
+                        
+                        elif tipo_aposta == 'ANY CRAPS':
+                            if any_craps(dado1, dado2) == True:
+                                aposta+=aposta*7
+                                fichas+=aposta
+                                print("Você ganhou {0} fichas!".format(7*aposta))
+                            else:
+                                print("Você perdeu {0} fichas.".format(aposta))
+
+                        elif tipo_aposta == 'TWELVE':
+                            if twelve(dado1, dado2) == True:
+                                print("Você ganhou {0} fichas!".format(30*aposta))
+                                aposta+=30*aposta
+                                fichas+=aposta
+                            else:
+                                print("Você perdeu {0} fichas.".format(aposta))        
 
 
 
