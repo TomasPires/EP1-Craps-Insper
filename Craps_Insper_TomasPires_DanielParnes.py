@@ -42,16 +42,31 @@ def pass_line(dado1, dado2, valor_aposta):      #Pass Line Bet
         ganhou = True
         return ganhou
     elif (soma == 2) or (soma == 3) or (soma == 12):
-        ganhou = False
         return ganhou
     else:
         point = True
         return point
 
-def field(dado1, dado2, valor_aposta):
+def field(dado1, dado2, valor_aposta):          #Field Bet
     soma = dado1+dado2
     ganhou = False
-    if soma 
+    ganhou_dobro = False
+    ganhou_triplo = False
+    if (soma == 5) or (soma == 6) or (soma == 7) or (soma == 8):
+        return ganhou
+    elif  (soma == 3) or (soma == 4) or (soma == 9) or (soma == 10) or (soma == 11):
+        ganhou = True
+        return ganhou
+    elif soma == 2:
+        valor_aposta*=2
+        ganhou = True
+        ganhou_dobro = True
+        return ganhou, ganhou_dobro
+    else:
+        valor_aposta*=3
+        ganhou = True
+        ganhou_triplo = True
+        return ganhou, ganhou_triplo
         
 print("Bem vindo ao Craps Insper! \nPara começar o jogo basta digitar iniciar. ") #Saudando o jogador
 iniciar = input("Digite aqui: ")   
