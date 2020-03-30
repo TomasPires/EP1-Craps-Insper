@@ -20,12 +20,16 @@ def dado2():                   #Fazendo o mesmo para o Dado 2
     b = random.randint(1,6)
     return b
 
-print("Bem vindo ao Craps Insper!") #Saudando o jogador
-iniciar = input("Para começar o jogo basta digitar iniciar. ")   
+print("Bem vindo ao Craps Insper! \nPara começar o jogo basta digitar iniciar. ") #Saudando o jogador
+iniciar = input()   
 iniciar = iniciar.upper()      #Transforma as letras da string em maiúsculas
 if iniciar != 'INICIAR':
     print('Tenha um ótimo dia!')
-else:                            #Aqui começa o jogo
-    print('Iniciando o jogo...')
+else:                                 
+    run = True
+    print('Iniciando o jogo...')     #Aqui começa o jogo
+    while run:
+        fichas = int(input("Comece por comprar uma quantidade de fichas. Quantas fichas você deseja comprar? "))
+        
     
     
