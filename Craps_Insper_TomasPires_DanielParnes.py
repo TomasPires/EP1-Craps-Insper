@@ -13,13 +13,6 @@ Created on Sat Mar 28 18:13:40 2020
 import random                  #Adicionando a biblioteca random para o sorteio do número dos dados
 
 
-def dado1():                   #Definindo a função para o Dado 1
-    a = random.randint(1,6)
-    return a
-
-def dado2():                   #Fazendo o mesmo para o Dado 2
-    b = random.randint(1,6)
-    return b
 
 def regras_come_out():         #Informações sobre a fase Come Out
     print("Você está na fase 'Come Out'.\nNessa fase você poderá apostar nas seguintes opções: Pass Line Bet, Field, Any Craps e Twelve." )
@@ -34,8 +27,10 @@ def regras_point():            #Informações sobre a fase Point
     print("Any Craps: Nessa aposta, se os dados somarem 2, 3 ou 12, o jogador ganha sete vezes o que apostou. Caso contrário, perde a aposta. ")
     print("Twelve: Nessa aposta, o jogador ganha trinta vezes o que apostou caso os dados somarem 12. Do contrário, perde a aposta.")
 
-def pass_line(dado1, dado2, valor_aposta):      #Pass Line Bet
-    soma = dado1+dado2
+def pass_line():      #Pass Line Bet
+    dado1=random.randint(1,6)
+    dado2=random.randint(1,6)
+    soma = dado1 + dado2
     ganhou = False
     point = False
     if (soma == 7) or (soma == 11):
@@ -44,7 +39,8 @@ def pass_line(dado1, dado2, valor_aposta):      #Pass Line Bet
         ganhou = False
     else:
         point = True
-    return ganhou, point
+    return ganhou, point, dado1, dado2
+print(pass_line())
 
 def field(dado1, dado2):          #Field Bet
     soma = dado1+dado2
@@ -54,7 +50,7 @@ def field(dado1, dado2):          #Field Bet
     if (soma == 5) or (soma == 6) or (soma == 7) or (soma == 8):
         ganhou = False
     elif  (soma == 3) or (soma == 4) or (soma == 9) or (soma == 10) or (soma == 11):
-        ganhou = True
+        ganhou = True            #O jogador ganha o que apostou
     elif soma == 2:              #O jogador ganha o dobro do que apostou
         ganhou = True
         ganhou_dobro = True
@@ -94,38 +90,72 @@ else:
         if fichas <= 0:
             print("Você deve apostar um número de fichas maior que zero.")
         else:
-            come_out = True         
-            while come_out:          #Loop da fase Come Out, que muda caso o jogador passe para Point na Pass Line Bet
-                jogar = input("Para começar digite 'apostar'. Para sair do jogo digite 'sair'.")
-                jogar = jogar.upper()
-                if jogar == 'APOSTAR':
-                    print(regras_come_out())
-                    tipo_aposta = input("Em qual tipo de aposta (Pass Line, Field, Any Craps, Twelve) você deseja apostar? ")
-                    tipo_aposta = tipo_aposta.upper()
-                    valor_aposta = int(input("Quantas fichas você deseja apostar? "))
-                    aposta = valor_aposta
-                    if tipo_aposta == 'PASS LINE':
-                        if (pass_line(dado1, dado2)[0]) == True:      #Jogador ganhou a Pass Line Bet
-                            aposta+=valor_aposta
-                            fichas+=apostas
-                            print("Você ganhou {0] fichas! Fichas disponíveis: {1}".format(fichas))
-                        elif (pass_line(dado1, dado2)):
-                elif jogar == 'SAIR': 
-                    sair = input("Para encerrar o jogo digite 'sair' novamente. Caso deseje apenas recomeçar o jogo, digite 'recomeçar'." )
-                    sair = sair.upper()
-                    if sair == 'SAIR':
-                        print('Até mais!')
-                        run = False
-                    elif sair == 'RECOMEÇAR'
-                        print("Reiniciando...")
-                        come_out = False
-                        
-                        
+            come_out = True                   #Run da fase come out
+            point_run = False                 #Run da fase point
+            print(regras_come_out())
+            while come_out:                   #Loop da fase Come Out, que muda caso o jogador passe para Point na Pass Line Bet
+                print("Você está na fase 'Come Out'")
+                print("Fichas disponíveis: {0}".format(fichas))
+                if fichas == 0:
+                    come_out = False
+                else:
+                    jogar = input("Para sair do jogo digite 'sair'. Para continuar digite 'continuar'")
+                    jogar = jogar.upper()
                     
-            
-            
-            
-            
-        
-    
-    
+                    if jogar == 'SAIR':
+                        sair = input("Para encerrar o jogo digite 'sair' novamente. Caso deseje apenas recomeçar o jogo, digite 'recomeçar'." )
+                        sair = sair.upper()
+                        if sair == 'SAIR':
+                            print('Até mais!')
+                            run = False
+                        elif sair == 'RECOMEÇAR':
+                            print("Reiniciando...")
+                            come_out = False                    
+                    else:
+                        dado1 = random.randint(1,6)
+                        dado2 = random.randint(1,6)
+                        tipo_aposta = input("Em qual tipo de aposta (Pass Line, Field, Any Craps, Twelve) você deseja apostar? ")
+                        tipo_aposta = tipo_aposta.upper()
+                        aposta = int(input("Quantas fichas você deseja apostar? "))
+                        fichas-=aposta                   
+                        
+                        if tipo_aposta == 'PASS LINE':
+                            if (pass_line(dado1, dado2)[0]) == True:      #Jogador ganhou a Pass Line Bet
+                                aposta+=aposta
+                                fichas+=aposta
+                                print("Você ganhou {0] fichas! Fichas disponíveis: {1}".format(aposta, fichas))
+                            elif (pass_line(dado1, dado2)[0]) == False:
+                                fichas-=aposta
+                                print("Você perdeu {0} fichas. Fichas disponíveis: {1}".format(aposta, fichas))
+                            elif (pass_line(dado1, dado2)[1]) == True:
+                                print("Voce passou para a fase 'Point'")
+                                come_out = False
+                                point_run = True
+                        
+                        elif tipo_aposta == 'FIELD':
+                            if (field(dado1, dado2)[0]) == False:
+                                print("Você perdeu tudo. Fichas disponíveis: {1}".format(fichas))
+                                come_out = False
+                            elif (field(dado1, dado2)[0]) == True:
+                                if (field(dado1, dado2)[1]) == True:
+                                    aposta+=aposta*2
+                                    fichas+=aposta
+                                    print("Você ganhou {0] fichas! Fichas disponíveis: {1}".format(aposta, fichas))
+                                elif (field(dado1, dado2)[2]) == True:
+                                    aposta+=aposta*3
+                                    fichas+=aposta
+                                    print("Você ganhou {0} fichas! Fichas disponíveis {1}".format(aposta, fichas))
+                                else:
+                                    aposta+=aposta
+                                    fichas+=aposta
+                                    print("Você ganhou {0} fichas! Fichas disponíveis {1}".format(aposta, fichas))
+                        
+                        elif tipo_aposta == 'ANY CRAPS':
+                            if any_craps(dado1, dado2) == True:
+                                aposta+=aposta*7
+                                fichas+=aposta
+                                print("Você ganhou {0} fichas! Fichas disponíveis {1}".format(aposta, fichas))
+                            else:
+                                fichas-=aposta
+                                print("Você perdeu {0} fichas. Fichas disponíveis {1}".format(aposta, fichas))
+                        
