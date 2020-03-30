@@ -82,6 +82,8 @@ if iniciar != 'INICIAR':
 else:                                 
     run = True
     print('Iniciando o jogo...')     #Aqui começa o jogo
+    
+    
     while run:
         fichas = int(input("Comece por comprar uma quantidade de fichas. Quantas fichas você deseja comprar? "))
         if fichas <= 0:
@@ -90,6 +92,8 @@ else:
             come_out = True                   #Run da fase come out
             point_run = False                 #Run da fase point
             print(regras_come_out())
+            
+            
             while come_out:                   #Loop da fase Come Out, que muda caso o jogador passe para Point na Pass Line Bet
                 print("Você está na fase 'Come Out'")
                 print("Fichas disponíveis: {0}".format(fichas))
@@ -166,9 +170,28 @@ else:
 
             print(regras_point())
             while point_run:
-                print("Você está na fase 'Come Out'")
-                print("Fichas disponíveis: {0}".format(fichas))
-                                
+                if fichas == 0:
+                    come_out = False
+                else:
+                    jogar = input("Para sair do jogo digite 'sair'. Para continuar digite 'apostar'")
+                    jogar = jogar.upper()
+                    
+                    if jogar == 'SAIR':
+                        sair = input("Para encerrar o jogo digite 'sair' novamente. Caso deseje apenas recomeçar o jogo, digite 'recomeçar'" )
+                        sair = sair.upper()
+                        if sair == 'SAIR':
+                            print('Até mais!')
+                            point_run = False
+                            run = False
+                        elif sair == 'RECOMEÇAR':
+                            print("Reiniciando...")
+                            point_run = False  
+                            
+                    else:
+                        print("Você está na fase 'Point'")
+                        print("Fichas disponíveis: {0}".format(fichas))
+                                                
+        
 
 
 
