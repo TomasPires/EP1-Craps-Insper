@@ -96,12 +96,29 @@ else:
         else:
             come_out = True         
             while come_out:          #Loop da fase Come Out, que muda caso o jogador passe para Point na Pass Line Bet
-                print(regras_come_out())
-                tipo_aposta = input("Em qual tipo de aposta (Pass Line, Field, Any Craps, Twelve) você deseja apostar? ")
-                tipo_aposta = tipo_aposta.upper()
-                valor_aposta = int(input("Quantas fichas você deseja apostar? "))
-                if tipo_aposta == 'PASS LINE':
-                    if pass_line(dado1, dado2) == True:
+                jogar = input("Para começar digite 'apostar'. Para sair do jogo digite 'sair'.")
+                jogar = jogar.upper()
+                if jogar == 'APOSTAR':
+                    print(regras_come_out())
+                    tipo_aposta = input("Em qual tipo de aposta (Pass Line, Field, Any Craps, Twelve) você deseja apostar? ")
+                    tipo_aposta = tipo_aposta.upper()
+                    valor_aposta = int(input("Quantas fichas você deseja apostar? "))
+                    aposta = valor_aposta
+                    if tipo_aposta == 'PASS LINE':
+                        if (pass_line(dado1, dado2)[0]) == True:      #Jogador ganhou a Pass Line Bet
+                            aposta+=valor_aposta
+                            fichas+=apostas
+                            print("Você ganhou {0] fichas! Fichas disponíveis: {1}".format(fichas))
+                        elif (pass_line(dado1, dado2)):
+                elif jogar == 'SAIR': 
+                    sair = input("Para encerrar o jogo digite 'sair' novamente. Caso deseje apenas recomeçar o jogo, digite 'recomeçar'." )
+                    sair = sair.upper()
+                    if sair == 'SAIR':
+                        print('Até mais!')
+                        run = False
+                    elif sair == 'RECOMEÇAR'
+                        print("Reiniciando...")
+                        come_out = False
                         
                         
                     
