@@ -40,33 +40,46 @@ def pass_line(dado1, dado2, valor_aposta):      #Pass Line Bet
     point = False
     if (soma == 7) or (soma == 11):
         ganhou = True
-        return ganhou
     elif (soma == 2) or (soma == 3) or (soma == 12):
-        return ganhou
+        ganhou = False
     else:
         point = True
-        return point
+    return ganhou, point
 
-def field(dado1, dado2, valor_aposta):          #Field Bet
+def field(dado1, dado2):          #Field Bet
     soma = dado1+dado2
     ganhou = False
     ganhou_dobro = False
     ganhou_triplo = False
     if (soma == 5) or (soma == 6) or (soma == 7) or (soma == 8):
-        return ganhou
+        ganhou = False
     elif  (soma == 3) or (soma == 4) or (soma == 9) or (soma == 10) or (soma == 11):
         ganhou = True
-        return ganhou
-    elif soma == 2:
-        valor_aposta*=2
+    elif soma == 2:              #O jogador ganha o dobro do que apostou
         ganhou = True
         ganhou_dobro = True
-        return ganhou, ganhou_dobro
-    else:
-        valor_aposta*=3
+    else:                        #O jogador ganha o triplo do que apostou
         ganhou = True
         ganhou_triplo = True
-        return ganhou, ganhou_triplo
+    return ganhou, ganhou_dobro, ganhou_triplo
+
+def any_craps(dado1, dado2):     #Any Craps Bet
+    soma = dado1+dado2
+    ganhou = False
+    if (soma == 2) or (soma == 3) or (soma == 12):
+        ganhou = True
+    else:
+        ganhou = False
+    return ganhou
+
+def twelve(dado1, dado2):        #Any Craps Bet
+    soma = dado1+dado2
+    ganhou = False
+    if soma == 12:
+        ganhou = True
+    else:
+        ganhou = False
+    return ganhou
         
 print("Bem vindo ao Craps Insper! \nPara começar o jogo basta digitar iniciar. ") #Saudando o jogador
 iniciar = input("Digite aqui: ")   
@@ -81,13 +94,16 @@ else:
         if fichas <= 0:
             print("Você deve apostar um número de fichas maior que zero.")
         else:
-            run_aposta = True
-            while run_aposta:
+            come_out = True         
+            while come_out:          #Loop da fase Come Out, que muda caso o jogador passe para Point na Pass Line Bet
                 print(regras_come_out())
                 tipo_aposta = input("Em qual tipo de aposta (Pass Line, Field, Any Craps, Twelve) você deseja apostar? ")
                 tipo_aposta = tipo_aposta.upper()
                 valor_aposta = int(input("Quantas fichas você deseja apostar? "))
                 if tipo_aposta == 'PASS LINE':
+                    if pass_line(dado1, dado2) == True:
+                        
+                        
                     
             
             
