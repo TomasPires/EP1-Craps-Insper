@@ -208,8 +208,7 @@ else:
                     print("Você está na fase 'Point'")
                     print("Fichas disponíveis: {0}".format(fichas))
                     jogar = input("Para sair do jogo digite 'sair'. Para continuar digite 'apostar': ")
-                    jogar = jogar.upper()
-                    
+                    jogar = jogar.upper() 
                     if jogar == 'SAIR':
                         sair = input("Para encerrar o jogo digite 'sair' novamente. Caso deseje apenas recomeçar o jogo, digite 'recomeçar': " )
                         sair = sair.upper()
@@ -223,30 +222,28 @@ else:
                             point_run = False
                             come_out = False
                     else:
-                    dado1 = 1
-                    dado2 = 6
-                    tipo_aposta = input("Em qual tipo de aposta (Point, Field, Any Craps, Twelve) você deseja apostar? ")
-                    tipo_aposta = tipo_aposta.upper()
-                    aposta = int(input("Quantas fichas você deseja apostar? "))
-                    apostas = []
-                    apostas.append(tipo_aposta)
-                    apostando = True
-                    while apostando:
-                        tipo_aposta = input("Gostaria de fazer mais apostas? ")
+                        dado1 = 1
+                        dado2 = 6
+                        tipo_aposta = input("Em qual tipo de aposta (Point, Field, Any Craps, Twelve) você deseja apostar? ")
                         tipo_aposta = tipo_aposta.upper()
-                        if tipo_aposta == 'SIM':
-                            tipo_aposta = input("Em qual tipo de aposta (Point, Field, Any Craps, Twelve) você deseja apostar? ")
+                        aposta = int(input("Quantas fichas você deseja apostar? "))
+                        apostas = []
+                        apostas.append(tipo_aposta)
+                        apostando = True
+                        while apostando:
+                            tipo_aposta = input("Gostaria de fazer mais apostas? ")
                             tipo_aposta = tipo_aposta.upper()
-                            aposta = int(input("Quantas fichas você deseja apostar? "))
-                            apostas.append(tipo_aposta)
-                        else:
-                            apostando = False
-                    n_aposta = 0
-                    pass_valor = 0               #Introduzindo variaveis para guardar os valores ganhos por cada aposta para não interferir nas demais
-                    field_valor = 0              #Estes serão somados ao montante de fichas no final
-                    any_valor = 0
-                    twelve_valor = 0
-                    print("Os dados somaram: ", dado1+dado2)
+                            if tipo_aposta == 'SIM':
+                                tipo_aposta = input("Em qual tipo de aposta (Point, Field, Any Craps, Twelve) você deseja apostar? ")
+                                tipo_aposta = tipo_aposta.upper()
+                                aposta = int(input("Quantas fichas você deseja apostar? "))
+                                apostas.append(tipo_aposta)
+                            else:
+                                apostando = False
+                        print("Os dados somaram: ", dado1+dado2)
+                        n_aposta = 0
+                        point_valor = pass_valor
+                        while n_aposta<len(apostas):
             
 
 print("Até mais!")
