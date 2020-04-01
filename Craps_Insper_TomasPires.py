@@ -14,18 +14,10 @@ import random                  #Adicionando a biblioteca random para o sorteio d
 
 
 def regras_come_out():         #Informações sobre a fase Come Out
-    print("Você está na fase 'Come Out'.\nNessa fase você poderá apostar nas seguintes opções: Pass Line Bet, Field, Any Craps e Twelve." )
-    print("Pass Line Bet: O jogador vence a rodada caso a soma dos dados lançados for 7 ou 11. Se os dados somarem 2, 3 ou 12, o jogador perde a rodada. Se a soma dos dados for diferente das anteriores, o jogo passa para a fase 'Point'.")
-    print("Field: Nessa aposta, o jogador ganha o que apostou caso a soma dos dados for 3, 4, 9, 10 ou 11. Se a soma for 2, o jogador ganha o dobro que apostou e, se for 12, o jogador ganha o triplo.")
-    print("Any Craps: Nessa aposta, se os dados somarem 2, 3 ou 12, o jogador ganha sete vezes o que apostou. Caso contrário, perde a aposta. ")
-    print("Twelve: Nessa aposta, o jogador ganha trinta vezes o que apostou caso os dados somarem 12. Do contrário, perde a aposta.")
+    return("Você está na fase 'Come Out'.\nNessa fase você poderá apostar nas seguintes opções: Pass Line Bet, Field, Any Craps e Twelve. \nPass Line Bet: O jogador vence a rodada caso a soma dos dados lançados for 7 ou 11. Se os dados somarem 2, 3 ou 12, o jogador perde a rodada. Se a soma dos dados for diferente das anteriores, o jogo passa para a fase 'Point'.\nField: Nessa aposta, o jogador ganha o que apostou caso a soma dos dados for 3, 4, 9, 10 ou 11. Se a soma for 2, o jogador ganha o dobro que apostou e, se for 12, o jogador ganha o triplo.\nAny Craps: Nessa aposta, se os dados somarem 2, 3 ou 12, o jogador ganha sete vezes o que apostou. Caso contrário, perde a aposta. \nTwelve: Nessa aposta, o jogador ganha trinta vezes o que apostou caso os dados somarem 12. Do contrário, perde a aposta.")
 
 def regras_point():            #Informações sobre a fase Point (as mesmas da outra fase, com exceção da Pass Line Bet, que é substituída pelo Point)
-    print("Você está na fase 'Point'.\nNessa fase você poderá apostar nas seguintes opções: Point, Field, Any Craps e Twelve." )
-    print("Point: O valor tirado na fase anterior em 'Pass Line Bet', caso haja um, passa ser o 'Point'. o Lançamento dos dados deve ser igual ao do Point. Se anova soma dos dados é a mesma do que foi guardado no Point, o jogador ganha o mesmo valor que apostou. Se sair uma soma de valor 7 o jogador perde tudo. Caso saia qualquer outro número, se mantem na fase de 'Point'.")
-    print("Field: Nessa aposta, o jogador ganha o que apostou caso a soma dos dados for 3, 4, 9, 10 ou 11. Se a soma for 2, o jogador ganha o dobro que apostou e, se for 12, o jogador ganha o triplo.")
-    print("Any Craps: Nessa aposta, se os dados somarem 2, 3 ou 12, o jogador ganha sete vezes o que apostou. Caso contrário, perde a aposta. ")
-    print("Twelve: Nessa aposta, o jogador ganha trinta vezes o que apostou caso os dados somarem 12. Do contrário, perde a aposta.")
+    return("Nessa fase você poderá apostar nas seguintes opções: Field, Any Craps e Twelve, além de ganhar se os dados somarem o valor do Point\nPoint: O valor tirado na fase anterior em 'Pass Line Bet', caso haja um, passa ser o 'Point'. o Lançamento dos dados deve ser igual ao do Point. Se anova soma dos dados é a mesma do que foi guardado no Point, o jogador ganha o mesmo valor que apostou. Se sair uma soma de valor 7 o jogador perde tudo. Caso saia qualquer outro número, se mantem na fase de 'Point'.\nField: Nessa aposta, o jogador ganha o que apostou caso a soma dos dados for 3, 4, 9, 10 ou 11. Se a soma for 2, o jogador ganha o dobro que apostou e, se for 12, o jogador ganha o triplo.\nAny Craps: Nessa aposta, se os dados somarem 2, 3 ou 12, o jogador ganha sete vezes o que apostou. Caso contrário, perde a aposta. \nTwelve: Nessa aposta, o jogador ganha trinta vezes o que apostou caso os dados somarem 12. Do contrário, perde a aposta.")
 
 def pass_line(dado1, dado2):      #Pass Line Bet
     soma = dado1 + dado2
@@ -109,8 +101,8 @@ else:
                         print("Reiniciando...")
                         come_out = False                    
                 else:
-                    dado1 = random.randint(1,6)
-                    dado2 = random.randint(1,6)
+                    dado1 = 6
+                    dado2 = 2
                     tipo_aposta = input("Em qual tipo de aposta (Pass Line, Field, Any Craps, Twelve) você deseja apostar? ")
                     tipo_aposta = tipo_aposta.upper()
                     aposta = int(input("Quantas fichas você deseja apostar? "))
@@ -231,9 +223,9 @@ else:
                             point_run = False
                             come_out = False
                     else:
-                        dado1 = random.randint(1,6)
-                        dado2 = random.randint(1,6)
-                        tipo_aposta = input("Em qual tipo de aposta (Point, Field, Any Craps, Twelve) você deseja apostar? ")
+                        dado1 = 6
+                        dado2 = 2
+                        tipo_aposta = input("Em qual tipo de aposta (Field, Any Craps, Twelve) você deseja apostar? ")
                         tipo_aposta = tipo_aposta.upper()
                         aposta = int(input("Quantas fichas você deseja apostar? "))
                         apostas = []
@@ -245,7 +237,7 @@ else:
                             tipo_aposta = input("Gostaria de fazer mais apostas? ")
                             tipo_aposta = tipo_aposta.upper()
                             if tipo_aposta == 'SIM':
-                                tipo_aposta = input("Em qual tipo de aposta (Point, Field, Any Craps, Twelve) você deseja apostar? ")
+                                tipo_aposta = input("Em qual tipo de aposta (Field, Any Craps, Twelve) você deseja apostar? ")
                                 tipo_aposta = tipo_aposta.upper()
                                 aposta = int(input("Quantas fichas você deseja apostar? "))
                                 apostas.append(tipo_aposta)
@@ -268,7 +260,49 @@ else:
                                 fichas = 0
                                 break
                             
-            
+                            elif apostas[n_aposta] == 'FIELD':
+                                print("Apostando em 'Field Bet'")
+                                if (field(dado1, dado2)[0]) == False:
+                                    print("Você perdeu tudo.")
+                                    fichas = 0
+                                    break                             
+                                elif (field(dado1, dado2)[0]) == True:
+                                    if (field(dado1, dado2)[1]) == True:
+                                        field_valor+=aposta*2
+                                        n_aposta+=1
+                                        print("Você ganhou {0] fichas!".format(2*aposta))
+                                    elif (field(dado1, dado2)[2]) == True:
+                                        field_valor+=aposta*3
+                                        print("Você ganhou {0} fichas!".format(3*aposta))
+                                        n_aposta+=1
+                                    else:
+                                        print("Você ganhou {0} fichas!".format(aposta))
+                                        field_valor+=aposta
+                                        n_aposta+=1
+                            
+                            elif apostas[n_aposta] == 'ANY CRAPS':
+                                print("Apostando em 'Any Craps'")
+                                if any_craps(dado1, dado2) == True:
+                                    any_valor+=aposta*7
+                                    print("Você ganhou {0} fichas!".format(7*aposta))
+                                    n_aposta+=1
+                                else:
+                                    any_valor-=aposta
+                                    print("Você perdeu {0} fichas.".format(aposta))
+                                    n_aposta+=1
+        
+                            elif apostas[n_aposta] == 'TWELVE':
+                                print("Apostando em 'Twelve'")
+                                if twelve(dado1, dado2) == True:
+                                    print("Você ganhou {0} fichas!".format(30*aposta))
+                                    twelve_valor+=aposta*30
+                                    n_aposta+=1
+                                else:
+                                    twelve_valor-=aposta
+                                    print("Você perdeu {0} fichas.".format(aposta))
+                                    n_aposta+=1
+                    fichas+=pass_valor + field_valor + any_valor + twelve_valor
+                    
 if fichas == 0:                     #O programa antes estava imprimindo "Até mais!" duas vezes
     print("Até mais!")
 
