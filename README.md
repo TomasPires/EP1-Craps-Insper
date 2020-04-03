@@ -1,6 +1,8 @@
 # EP1-Craps-Insper
-Exercício Problema 1\n
-Produzido por Tomás Selaibe Pires Turma C - 1ºSemestre\n
+Exercício Problema 1
+
+Produzido por Tomás Selaibe Pires Turma C - 1ºSemestre
+
 O programa presente nesse repositório (Craps_Insper_TomásPires.py) se trata de um jogo de dados denominado Craps
 Neste jogo, o jogador começa com 100 fichas e deve apostar em rodadas consecutivas em 4 tipos de apostas: Pass Line Bet, Field Bet, Any Craps e Twelve Bet
 Em cada aposta, a soma dos dados é que determina se o jogador ganha ou perde as fichas apostadas
