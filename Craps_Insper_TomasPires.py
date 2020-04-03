@@ -103,8 +103,8 @@ else:
                         print("Reiniciando...")
                         come_out = False                    
                 else:
-                    dado1 = random.randint(1,6)
-                    dado2 = random.randint(1,6)
+                    dado1 = 6
+                    dado2 = 1
                     tipo_aposta = input("Em qual tipo de aposta (Pass Line, Field, Any Craps, Twelve) você deseja apostar? ")
                     tipo_aposta = tipo_aposta.upper()
                     aposta = int(input("Quantas fichas você deseja apostar? "))
@@ -116,7 +116,7 @@ else:
                     mesa = 0                              #fichas apostadas pelo jogador
                     mesa+=aposta
                     while apostando:
-                        if mesa>fichas:
+                        if mesa>=fichas:
                             print("Você não pode apostar mais fichas do que possui. Recomece as apostas")
                             print("Reiniciando...\n")
                             break
@@ -168,8 +168,15 @@ else:
                             print("Apostando em 'Field Bet'")
                             if (field(dado1, dado2)[0]) == False:
                                 print("Você perdeu tudo.")
-                                fichas = 0
-                                break                             
+                                recomecar = input("Deseja recomeçar?(sim/nao): ")
+                                recomecar = recomecar.upper()
+                                if recomecar == 'SIM':
+                                    print("Recomeçando...\n")
+                                    fichas = 100
+                                    break
+                                else:
+                                    fichas = 0
+                                    break                             
                             elif (field(dado1, dado2)[0]) == True:
                                 if (field(dado1, dado2)[1]) == True:
                                     field_valor+=lista_apostas[lista_apostas[n_aposta]]*2
@@ -246,6 +253,7 @@ else:
                         apostas = []                  #Lista dos tipos de aposta
                         lista_apostas = []            #lista das apostas
                         apostas.append(tipo_aposta)
+                        lista_apostas.append(aposta)
                         apostando = True
                         mesa = 0 
                         mesa+=aposta
@@ -267,22 +275,20 @@ else:
                         n_aposta = 0
                         point_valor = pass_valor
                         while n_aposta<len(apostas):
-                            if (dado1+dado2) == point:
-                                print("Você ganhou o Point! \nVoltando para a fase 'Come Out'")
-                                fichas+=aposta_point
-                                point_run = False
-                                break
-                            elif (dado1+dado2) == 7:
-                                print("Você perdeu tudo")
-                                fichas = 0
-                                break
                             
-                            elif apostas[n_aposta] == 'FIELD':
+                            if apostas[n_aposta] == 'FIELD':
                                 print("Apostando em 'Field Bet'")
                                 if (field(dado1, dado2)[0]) == False:
                                     print("Você perdeu tudo.")
-                                    fichas = 0
-                                    break                             
+                                    recomecar = input("Deseja recomeçar?(sim/nao): ")
+                                    recomecar = recomecar.upper()
+                                    if recomecar == 'SIM':
+                                        print("Recomeçando...\n")
+                                        fichas = 100
+                                        break
+                                    else:
+                                        fichas = 0
+                                        break                             
                                 elif (field(dado1, dado2)[0]) == True:
                                     if (field(dado1, dado2)[1]) == True:
                                         field_valor+=lista_apostas[lista_apostas[n_aposta]]*2
@@ -325,7 +331,22 @@ else:
                                     fichas-=lista_apostas[n_aposta]
                                     print("Você perdeu {0} fichas.".format(lista_apostas[n_aposta]))
                                     n_aposta+=1
-
+                            if (dado1+dado2) == point:
+                                print("Você ganhou o Point! \nVoltando para a fase 'Come Out'\n")
+                                fichas+=aposta_point
+                                point_run = False
+                                break
+                            elif (dado1+dado2) == 7:
+                                print("Você perdeu tudo.")
+                                recomecar = input("Deseja recomeçar?(sim/nao): ")
+                                recomecar = recomecar.upper()
+                                if recomecar == 'SIM':
+                                    print("Recomeçando...\n")
+                                    fichas = 100
+                                    break
+                                else:
+                                    fichas = 0
+                                    break
                     
 if fichas == 0:                     #O programa antes estava imprimindo "Até mais!" duas vezes
     print("Até mais!")
