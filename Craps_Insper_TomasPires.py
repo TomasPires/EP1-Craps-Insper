@@ -111,14 +111,14 @@ else:
                     aposta = int(input("Quantas fichas você deseja apostar? "))
                     apostas = []                            #Lista dos tipos de aposta
                     lista_apostas = []                      #lista das apostas
-                    apostas.append(tipo_aposta)
+                    apostas.append(tipo_aposta)             #Lista que guarda os tipos das apostas e abaixo a que guarda os valores 
                     lista_apostas.append(aposta)            #As listas foram feitas para associar o valor da aposta com o tipo da aposta
                     apostando = True
                     mesa = 0                              #fichas apostadas pelo jogador
                     mesa+=aposta
                     while apostando:
                         if mesa>=fichas:
-                            print("Você não pode apostar mais fichas do que possui. Recomece as apostas")
+                            print("Você não pode apostar mais fichas do que possui. Refaça as apostas")
                             print("Reiniciando...\n")
                             break
                         else:
