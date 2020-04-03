@@ -4,6 +4,11 @@ Exercício Problema 1
 Produzido por Tomás Selaibe Pires Turma C - 1ºSemestre
 
 O programa presente nesse repositório (Craps_Insper_TomásPires.py) se trata de um jogo de dados denominado Craps
+
+O cógigo está estruturado em: 1- Definição das funções das apostas; 2-Comandos para começar o jogo; 3- Loop da fase Come Out; 4-Loop da fase Point
+
+Há comentarios ao longo do código para explicar o significado de algumas funções.
+
 Neste jogo, o jogador começa com 100 fichas e deve apostar em rodadas consecutivas em 4 tipos de apostas: Pass Line Bet, Field Bet, Any Craps e Twelve Bet
 Em cada aposta, a soma dos dados é que determina se o jogador ganha ou perde as fichas apostadas
 Abaixo seguem as regras exibidas ao jogador em cada rodada:
