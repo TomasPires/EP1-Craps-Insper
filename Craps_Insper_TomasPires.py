@@ -213,6 +213,8 @@ else:
                                 n_aposta+=1
                     
 #Fase Point - Nesse loop, os condicionais das apostas Field, Any Craps e Twelve são identicos, adicionando-se apenas o condicional do point
+            if point_run == True:
+                print(regras_point())
             while point_run:
                 if fichas <= 0:
                     print("Você não tem mais fichas disponíveis")
