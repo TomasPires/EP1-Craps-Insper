@@ -338,7 +338,7 @@ else:
                                     fichas = 0
                                     break
                     
-if fichas == 0:                     #O programa antes estava imprimindo "Até mais!" duas vezes
+if fichas == 0:                     #O programa antes estava imprimindo "Até mais!" duas vezes; este condicional impede isso de acontecer
     print("Até mais!")
 
             
