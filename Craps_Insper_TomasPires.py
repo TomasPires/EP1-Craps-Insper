@@ -134,7 +134,7 @@ else:
                             
                             else:
                                 apostando = False
-                                print("Os dados somaram: ", dado1+dado2)
+                                print("\nOs dados somaram: ", dado1+dado2)
                     n_aposta = 0                  
                     field_valor = 0                  #Introduzindo variaveis para guardar os valores ganhos por cada aposta para não interferir nas demais
                     any_valor = 0                    #Estes serão somados ao montante de fichas no final 
@@ -158,12 +158,12 @@ else:
                                 print("Você perdeu {0} fichas.".format(lista_apostas[n_aposta]))
                                 n_aposta+=1
     
-                        elif apostas[n_aposta] == 'FIELD':
+                        elif apostas[n_aposta] == 'FIELD':                             #Condicional da Field Bet
                             print("Apostando em 'Field Bet'")
                             if (field(dado1, dado2)[0]) == False:
                                 print("Você perdeu tudo.")
-                                recomecar = input("Deseja recomeçar?(sim/nao): ")
-                                recomecar = recomecar.upper()
+                                recomecar = input("Deseja recomeçar?(sim/nao): ")      #Possibilidade de recomeçar o jogo se Fichas = 0
+                                recomecar = recomecar.upper()                          #Antes o jogador tinha que rodar o programa novamente
                                 if recomecar == 'SIM':
                                     print("Recomeçando...\n")
                                     fichas = 100
@@ -188,7 +188,7 @@ else:
                                     fichas+=lista_apostas[n_aposta]
                                     n_aposta+=1
                         
-                        elif apostas[n_aposta] == 'ANY CRAPS':
+                        elif apostas[n_aposta] == 'ANY CRAPS':                             #Condicional da Any Craps
                             print("Apostando em 'Any Craps'")
                             if any_craps(dado1, dado2) == True:
                                 any_valor+=lista_apostas[n_aposta]*7
@@ -200,7 +200,7 @@ else:
                                 print("Você perdeu {0} fichas.".format(lista_apostas[n_aposta]))
                                 n_aposta+=1
     
-                        elif apostas[n_aposta] == 'TWELVE':
+                        elif apostas[n_aposta] == 'TWELVE':                                #Condicional da Field Bet
                             print("Apostando em 'Twelve'")
                             if twelve(dado1, dado2) == True:
                                 print("Você ganhou {0} fichas!".format(30*lista_apostas[n_aposta]))
@@ -212,7 +212,7 @@ else:
                                 print("Você perdeu {0} fichas.".format(lista_apostas[n_aposta]))
                                 n_aposta+=1
                     
-#Fase Point
+#Fase Point - Nesse loop, os condicionais das apostas Field, Any Craps e Twelve são identicos, adicionando-se apenas o condicional do point
             while point_run:
                 if fichas <= 0:
                     print("Você não tem mais fichas disponíveis")
@@ -263,7 +263,7 @@ else:
                                 break
                             else:
                                 apostando = False
-                        print("Os dados somaram: ", dado1+dado2)
+                        print("\nOs dados somaram: ", dado1+dado2)
                         n_aposta = 0
                         while n_aposta<len(apostas):
                             
